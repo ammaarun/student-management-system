@@ -42,4 +42,8 @@ public class StudentController {
     public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
     }
+    @PutMapping("/{studentId}/enroll/{courseId}")
+    public Student enrollStudentInCourse(@PathVariable Long studentId, @PathVariable Long courseId) {
+        return studentService.enrollStudentInCourse(studentId, courseId);
+    }
 }

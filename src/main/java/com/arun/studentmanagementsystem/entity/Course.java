@@ -9,28 +9,22 @@ import lombok.AllArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "students")
+@Table(name = "courses")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String email;
-    private Integer age;
-    private String course;
+    private String courseName;
+    private String courseCode;
+    private Integer duration;
 
-    @ManyToMany
-    @JoinTable(
-        name = "student_course",
-        joinColumns = @JoinColumn(name = "student_id"),
-        inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-    @JsonIgnoreProperties("students")
-    private List<Course> courses;
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnoreProperties("courses")
+    private List<Student> students;
 }
